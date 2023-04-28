@@ -3,15 +3,9 @@ from typing import Callable, List, Tuple
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.patches import Polygon
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from mpl_toolkits.mplot3d import Axes3D
-from abc import ABC, abstractmethod
-from scipy.special import gamma
-from scipy.stats import special_ortho_group
-from scipy.optimize import minimize_scalar
-from scipy.optimize import minimize
-from functools import partial
-from itertools import product
 from itertools import combinations
 
 from base import ConvexBody
@@ -40,19 +34,27 @@ class Parallelepiped(ConvexBody):
         return np.array(vertices)
 
 
-    def plot(self, filename=None):
+    def plot(self) -> None:
+        """
+        Plot the parallelepiped.
+
+        Raises:
+            ValueError: If the parallelepiped dimension is not 2 or 3.
+        """
         if self.dim == 2:
             fig, ax = plt.subplots()
             super().plot(ax)
-            vertices = self.parallelepiped.get_vertices()
-            polygon = plt.Polygon(vertices[:, :2], edgecolor='k', alpha=0.5, linewidth=1)
+            vertices = self.get_vertices()
+            # Create a polygon using the vertices and add it to the plot
+            polygon = Polygon(vertices[:, :2], edgecolor='k', alpha=0.5, linewidth=1)
             ax.add_patch(polygon)
         elif self.dim == 3:
             fig = plt.figure()
             ax = fig.add_subplot(111, projection='3d')
             super().plot(ax)
 
-            vertices = self.parallelepiped.get_vertices()
+            vertices = self.get_vertices()
+            # Define the faces of the parallelepiped using the vertices
             faces = [
                 [vertices[0], vertices[1], vertices[5], vertices[4]],
                 [vertices[2], vertices[3], vertices[7], vertices[6]],
@@ -62,6 +64,7 @@ class Parallelepiped(ConvexBody):
                 [vertices[1], vertices[3], vertices[7], vertices[5]]
             ]
 
+            # Create a 3D polygon collection for the faces and add it to the plot
             face_collection = Poly3DCollection(faces, linewidths=1, edgecolors='k', alpha=0.5)
             face_colors = ['red', 'blue', 'green', 'yellow', 'cyan', 'magenta']
             face_collection.set_facecolor(face_colors)
@@ -74,10 +77,8 @@ class Parallelepiped(ConvexBody):
         if self.dim == 3:
             ax.set_zlabel('Z')
 
-        if filename is not None:
-            plt.savefig(filename)
-        else:
-            plt.show()
+        plt.show()
+
 
 
     def hypersurface_measure(self, k):
