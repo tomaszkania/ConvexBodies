@@ -299,9 +299,15 @@ class Tsirelson(ConvexBody):
         """
         Check if a given point is on the surface of the Tsirelson space.
 
-        :param point: array-like, a list or a numpy array of n elements
-        :param radius: float, the radius of the LpBall (default: None)
-        :return: bool, True if the point is on the surface, False otherwise
+        Parameters:
+        -----------
+        point (list): array-like, a list or a numpy array of n elements,
+        radius (float): the radius of the ball (default: None).
+        
+        Returns:
+        -------- 
+        
+        bool, True if the point is on the surface, False otherwise.
         """
         if radius is None:
             radius = self.radius
