@@ -12,7 +12,33 @@ from base import ConvexBody
 
 
 class Ellipsoid(ConvexBody):
-    """This is a class for n-dimensional ellipsoids, inheriting from the ConvexBody abstract class."""
+    """
+    Represents an n-dimensional ellipsoid.
+
+    An ellipsoid is a surface defined by the equation (x_1/a_1)^2 + (x_2/a_2)^2 + ... + (x_n/a_n)^2 = 1,
+    where a_1, a_2, ..., a_n are the lengths of the semi-axes in each dimension.
+
+    Attributes:
+    -----------
+    dim: int
+        The dimension of the ellipsoid.
+    radii: numpy array
+        A 1D array representing the lengths of the semi-axes (a_1, a_2, ..., a_n).
+
+    Methods:
+    --------
+    surface_area():
+        Computes the surface area of the ellipsoid (only supported for 2D and 3D ellipsoids).
+
+    volume():
+        Computes the volume of the ellipsoid.
+
+    get_vertices():
+        Returns the vertices of the ellipsoid in the form of an n-dimensional numpy array.
+
+    plot():
+        Plots the ellipsoid (only supported for 2D and 3D ellipsoids).
+    """
 
     def __init__(self, radii: List[float]):
         dim = len(radii)
