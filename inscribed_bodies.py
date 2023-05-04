@@ -46,7 +46,9 @@ class ParallelepipedInscribedInEllipsoid(Ellipsoid):
         """
         A string representation of the inscribed parallelepiped.
 
-        :return: str, the string representation of the inscribed parallelepiped
+        Returns:
+        --------
+        str, the string representation of the inscribed parallelepiped
         """
         return f"InscribedParallelepiped(ellipsoid={self.ellipsoid}, parallelepiped={self.parallelepiped})"
         
@@ -55,9 +57,14 @@ class ParallelepipedInscribedInEllipsoid(Ellipsoid):
     def _generate_inscribed_points(self, origin):
         """
         Generate the remaining points on the surface of the ellipsoid for the inscribed parallelepiped.
-
-        :param origin: array-like, a numpy array representing the origin point
-        :return: list, a list of numpy arrays representing the remaining inscribed points
+        
+        Parameters:
+        -----------
+            origin (list): array-like, a numpy array representing the origin point.
+        
+        Returns:
+        --------
+            list, a list of numpy arrays representing the remaining inscribed points.
         """
         points = []
 
@@ -72,14 +79,18 @@ class ParallelepipedInscribedInEllipsoid(Ellipsoid):
         return points
 
         
-    
 
     def hypersurface_measure(self, k):
         """
         Calculate the k-dimensional hypersurface measure of the inscribed parallelepiped.
 
-        :param k: int, the dimension of the hypersurface measure
-        :return: float, the k-dimensional hypersurface measure
+        Parameters:
+        -----------
+            k (int): the dimension of the hypersurface measure.
+        
+        Returns:
+        --------
+            float, the k-dimensional hypersurface measure.
         """
         return self.parallelepiped.hypersurface_measure(k)
 
@@ -87,7 +98,9 @@ class ParallelepipedInscribedInEllipsoid(Ellipsoid):
         """
         Compute the total circumference of the edges of the inscribed parallelepiped.
 
-        :return: float, the total circumference of the edges
+        Returns:
+        --------
+            float, the total circumference of the edges.
         """
         return self.parallelepiped.total_edge_circumference()
 
