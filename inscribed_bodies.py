@@ -23,8 +23,10 @@ class ParallelepipedInscribedInEllipsoid(Ellipsoid):
         """
         Initialize the inscribed parallelepiped with the given ellipsoid radii and center.
 
-        :param radii: array-like, a list or a numpy array of n radii for the ellipsoid
-        :param center: array-like, a numpy array representing the center of the ellipsoid, optional
+        Parameters:
+        -----------
+        radii (list): array-like, a list or a numpy array of n radii for the ellipsoid
+        
         """
         super().__init__(radii)
         self.dim = len(radii)
